@@ -43,11 +43,9 @@ A software able to generate evenly spaced points on the regular simplex (that is
 
 \section*{Keywords}
 
-simplex; evenly spaced points; compositional data.
+Simplex; evenly spaced points; compositional data; $N$-tuples summing to one.
 
 \section*{Introduction}
-
-\textcolor{blue}{An overview of the software, how it was produced, and the research for which it has been used, including references to relevant research articles. A short comparison with software which implements similar functionality should be included in this section. }
 
 Writing a code returning a set of $N$ numbers summing to a constant is not a difficult task. The ``natural'' way to achieve the goal is to implement $N-1$ nested for cycles. However, this solution becomes inconvenient when one has to change $N$ continuously because it implies code revision. Finding a solution to change the ``dimension'' $N$ without modifying the code is not straightforward. 
 
@@ -57,7 +55,6 @@ The software presented in this document provides a solution to the two problems 
 
 The initial motivation to develop the utility is the attempt to model agents' adaptive decision making in agent based models. More precisely, the idea was to make artificial agents able to forecast the value of a relevant variable by means of a moving arithmetic average of its past values. The weights of the arithmetic average are points on the simplex. The heuristics that characterizes adaptive behavior \cite{gigerenzeretal11} could be based on particularly easy to compute weights combinations called focal points \cite{schelling60}. Focal points are thus evenly spaced points on the simplex. In this setting, Agents have to choose which focal points to use in the next forecast. To this aim, they evaluate for each focal point the accuracy of prediction they would achieve by using the considered focal point in the past. The best performing focal point is then used to produce the next forecast. 
 This mechanism is used in \cite{icaart12} in a model where firms forecast the level of demand in order to make the production. 
-
 The application was build in order to supply the set of focal points to the artificial agents of the model.
 
 Because a search on the Internet revealed that a user friendly software whose output complies with the above described need, I decided to realize it and to make it available to anybody that could find it useful. Hereafter, I briefly present the program functioning.
@@ -133,8 +130,6 @@ Figure \ref{fig:ternary}, for example reports a ternary plot of the output file.
 
 \section*{Implementation and architecture}
 
-\textcolor{blue}{How the software was implemented, with details of the architecture where relevant. Use of relevant diagrams is appropriate. Please also describe any variants and associated implementation differences.}
-
 The architecture of this software does not present peculiarities: 
 it is a Java application composed of four classes: 
 \verb+Simplex+ (that contains the main), \verb+GuiBuilder+, \verb+MainWindow+, \verb+Dim+.
@@ -155,8 +150,6 @@ Thus, the line of code\\ \verb+dimension.iterPrint(<array of zeros>);+\\ trigger
 
 
 \section*{Quality control}
-
-\textcolor{blue}{Detail the level of testing that has been carried out on the code (e.g. unit, functional, load etc.), and in which environments. If not already included in the software documentation, provide details of how a user could quickly understand if the software is working (e.g. providing examples of running the software with sample input and output data). }
 
 Quality control for this software consists in checking that all the points are generated without duplication. Checking this is not difficult in those cases in which the number of points ($\#P(N,d)$) can be computed.
 
@@ -183,7 +176,7 @@ The check consists in verifying that the number of lines in the output file is e
 Platform independent.
 
 \section*{Programming language}
-Java $>$ 1.6
+Java $\ge$ 1.7
 
 \section*{Additional system requirements}
 None.
@@ -225,9 +218,7 @@ English.
 
 \section*{(3) Reuse potential}
 
-\textcolor{blue}{Please describe in as much detail as possible the ways in which the software could be reused by other researchers both within and outside of your field. This should include the use cases for the software, and also details of how the software might be modified or extended (including how contributors should contact you) if appropriate. Also you must include details of what support mechanisms are in place for this software (even if there is no support).}
-
-The software is potentially useful in dealing with compositional data \cite{coda15}. In financial economics, for example, households are interested in determining the allocation of their wealth. Portfolio theory provides a framework to determine the shares of wealth to be allocated among the available financial assets. Therefore, the theory deals with compositional data and its outcome is a point on the unit $N$-simplex. 
+The software is potentially useful to people dealing with compositional data \cite{coda15}. In financial economics, for example, households are interested in determining the allocation of their wealth. Portfolio theory provides a framework to determine the shares of wealth to be allocated among the available financial assets. Therefore, the theory deals with compositional data and its outcome is a point on the unit $N$-simplex. 
 Briefly, the givens of the problem are a vector of expected values and the correlation matrix of the financial assets revenues. Using these data, the first step is to build the set of all possible combinations revenue-risk that can be realized by building portfolios composed of the existing financial assets. The software can be used to have an overview of this set being each portfolio a point of the simplex. 
 As an example, figure \ref{fig:portfolios} reports the set we are talking about using the output of the software with $N=3$, $d=0.01$ and the expected values and covariance matrix taken from \cite{zivot2008}. 
 The ``efficient frontier'' is also reported as the thick solid black line.  
@@ -246,7 +237,7 @@ However, the set of focal points considered for example in \cite{icaart12} is st
 
 A third possible use is that of random sampling from the unit simplex. \cite{sampling04} shows that it is not an easy task. In some cases, uniformly drawing a line from the output file could be a solution. 
 
-It is very difficult to figure out the potential applications of a tool in unfamiliar fields of studies. However, compositional data widespread the real world and are thus object of study in several disciplines. The present software was build and is released with the awareness that it will bring at most a marginal contribution to those who deal with compositional data. However, we think that in sciences, it is anyway worthwhile to have small contributions because they might help in achieving more important findings. Finally, I invite people that are encountering problems in using the software or those who intend to develop it to contact me for having support.  
+It is very difficult to figure out the potential applications of a tool in unfamiliar fields of studies. However, compositional data widespread the real world and are thus object of study in several disciplines. The present software was built and released with the awareness that it will bring at most a marginal contribution to those who deal with compositional data. However, we think that in sciences, it is anyway worthwhile to have small contributions because they might help in achieving more important findings. Finally, I invite people that are encountering problems in using the software or those who intend to develop it to contact me for having support.  
 
 \section*{Acknowledgements}
 None.
